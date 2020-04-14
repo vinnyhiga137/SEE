@@ -1,0 +1,9 @@
+# Builds related (binaries and objects)
+builds/
+
+# Visual Studio and Windows related
+.vs/
+**.sln
+**.vcxproj
+**.vcxproj.filters
+**.vcxproj.user
