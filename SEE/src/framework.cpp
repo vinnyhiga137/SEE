@@ -3,6 +3,8 @@
 #include "framework.h"
 #include <iostream>
 
+
 void foo() {
+
 	std::cout << "Hello Game World!" << std::endl;
 }

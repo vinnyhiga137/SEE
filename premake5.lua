@@ -1,3 +1,10 @@
+-- Setting up some parameters to load the GLFW and macros
+
+outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
+
+
+
+-- Setting up some default configurations for the workspace
 workspace "SEE"
     architecture "x86_64"
 
@@ -11,8 +18,10 @@ workspace "SEE"
 		"MultiProcessorCompile"
 	}
 
-outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+
+
+-- Game Engine configuration
 project "SEE"
     location "SEE"
     kind "StaticLib"
@@ -30,8 +39,13 @@ project "SEE"
         "%{prj.name}/src/**.c"
     }
 
-    includedirs {
+    includedirs { 
+        "3rd Party/GLFW/glfw-3.3.2-WIN64/include",
+        "3rd Party/glad/include"
+    }
 
+    libdirs { 
+        "3rd Party/GLFW/glfw-3.3.2-WIN64/lib-vc2019" 
     }
 
     filter "system:windows"
@@ -56,6 +70,9 @@ project "SEE"
         optimize "On"
 
 
+
+
+
 project "Game"
     location "Game"
     kind "ConsoleApp"
@@ -74,11 +91,18 @@ project "Game"
     }
 
     includedirs {
-        "SEE/src"
+        "SEE/src",
+        "3rd Party/GLFW/glfw-3.3.2-WIN64/include",
+        "3rd Party/glad/include" 
     }
 
     links {
-        "SEE"
+        "SEE",
+        "glfw3"
+    }
+
+    libdirs { 
+        "3rd Party/GLFW/glfw-3.3.2-WIN64/lib-vc2019" 
     }
 
     filter "system:windows"
