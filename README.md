@@ -5,7 +5,7 @@ This game engine was made for supporting simple 2D and 3D rendering with input p
 
 ## Why create "another" game engine?
 
-The main ideia is to implement an engine based on the "guides" from the Game Engine Architecture book (3rd edition) made by Jason Gregory and as self-learning project for everyone who wants to study game engines architectures and how they work on each subsystem / layer (e.g. Gameplay Subsystems, Rendering Subsystem, Audio Subsystem, Physics Subsystem, A.I. Subsystem).
+The main ideia (for now) is to set this project as self-learning project for everyone who wants to study game engines architectures and how they work on each subsystem / layer (e.g. Gameplay Subsystems, Rendering Subsystem, Audio Subsystem, Physics Subsystem, A.I. Subsystem).
 
 ## METAS
 
