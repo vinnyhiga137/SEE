@@ -40,25 +40,50 @@ project "SEE"
         "%{prj.name}/**.c"
     }
 
-    includedirs { 
-        "3rd Party/GLFW/glfw-3.3.2-WIN64/include",
-        "3rd Party/glad/include"
-    }
-
-    libdirs { 
-        "3rd Party/GLFW/glfw-3.3.2-WIN64/lib-vc2019" 
-    }
-
-    links {
-        "glfw3",
-        "opengl32.lib"
-    }
-
     filter "system:windows"
         systemversion "latest"
 
+        links {
+            "glfw3",
+            "opengl32.lib"
+        }
+
         defines {
             "WIN32"
+        }
+
+        includedirs { 
+            "3rd Party/GLFW/glfw-3.3.2-WIN64/include",
+            "3rd Party/glad/include"
+        }
+    
+        libdirs { 
+            "3rd Party/GLFW/glfw-3.3.2-WIN64/lib-vc2019" 
+        }
+
+    filter "system:macosx"
+
+        links {
+            "glfw",
+            "CoreVideo.framework",
+            "Cocoa.framework",
+            "IOKit.framework",
+            "OpenGL.framework"
+        }
+
+        defines {
+            "MAC"
+        }
+
+        includedirs { 
+            --"3rd Party/GLFW/glfw-3.3.2-MACOS/include", -- If you want to use the 3rd Party folder
+            "/usr/local/Cellar/glfw/3.3.2/include",
+            "3rd Party/glad/include"
+        }
+
+        libdirs { 
+            --"3rd Party/GLFW/glfw-3.3.2-MACOS/lib-macos", -- If you want to use the 3rd Party folder
+            "/usr/local/Cellar/glfw/3.3.2/lib"
         }
 
     filter "configurations:Debug"
@@ -98,18 +123,41 @@ project "Game"
         "SEE/"
     }
 
-    links {
-        "see"
-    }
-
-    libdirs { 
-    }
-
     filter "system:windows"
         systemversion "latest"
 
         defines {
             "WIN32"
+        }
+
+        links {
+            "see"
+        }
+
+    filter "system:macosx"
+
+        defines {
+            "MAC"
+        }
+
+        links {
+            "see",
+            "glfw",
+            "CoreVideo.framework",
+            "Cocoa.framework",
+            "IOKit.framework",
+            "OpenGL.framework"
+        }
+
+        includedirs { 
+            --"3rd Party/GLFW/glfw-3.3.2-MACOS/include", -- If you want to use the 3rd Party folder
+            "/usr/local/Cellar/glfw/3.3.2/include",
+            "3rd Party/glad/include"
+        }
+
+        libdirs { 
+            --"3rd Party/GLFW/glfw-3.3.2-MACOS/lib-macos", -- If you want to use the 3rd Party folder
+            "/usr/local/Cellar/glfw/3.3.2/lib"
         }
 
     filter "configurations:Debug"

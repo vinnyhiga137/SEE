@@ -7,3 +7,11 @@ builds/
 **.vcxproj
 **.vcxproj.filters
 **.vcxproj.user
+
+# XCode and Mac related
+
+**.xcworkspace
+**.xcodeproj
+
+.DS_STORE
+*/.DS_STORE
