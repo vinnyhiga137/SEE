@@ -1,3 +1,0 @@
-For now you must link the 3rd party static libraries into your XCode.
-
-To link, you must open the See project and go to Build Phases configuration and add the libraries there.

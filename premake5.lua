@@ -65,6 +65,7 @@ project "SEE"
 
         links {
             "glfw",
+            "CoreVideo.framework",
             "Cocoa.framework",
             "IOKit.framework",
             "OpenGL.framework"
@@ -75,12 +76,14 @@ project "SEE"
         }
 
         includedirs { 
-            "3rd Party/GLFW/glfw-3.3.2-MACOS/include",
+            --"3rd Party/GLFW/glfw-3.3.2-MACOS/include", -- If you want to use the 3rd Party folder
+            "/usr/local/Cellar/glfw/3.3.2/include",
             "3rd Party/glad/include"
         }
 
         libdirs { 
-            "3rd Party/GLFW/glfw-3.3.2-MACOS/lib-macos" 
+            --"3rd Party/GLFW/glfw-3.3.2-MACOS/lib-macos", -- If you want to use the 3rd Party folder
+            "/usr/local/Cellar/glfw/3.3.2/lib"
         }
 
     filter "configurations:Debug"
@@ -120,15 +123,15 @@ project "Game"
         "SEE/"
     }
 
-    links {
-        "see"
-    }
-
     filter "system:windows"
         systemversion "latest"
 
         defines {
             "WIN32"
+        }
+
+        links {
+            "see"
         }
 
     filter "system:macosx"
@@ -138,7 +141,23 @@ project "Game"
         }
 
         links {
-            "see"
+            "see",
+            "glfw",
+            "CoreVideo.framework",
+            "Cocoa.framework",
+            "IOKit.framework",
+            "OpenGL.framework"
+        }
+
+        includedirs { 
+            --"3rd Party/GLFW/glfw-3.3.2-MACOS/include", -- If you want to use the 3rd Party folder
+            "/usr/local/Cellar/glfw/3.3.2/include",
+            "3rd Party/glad/include"
+        }
+
+        libdirs { 
+            --"3rd Party/GLFW/glfw-3.3.2-MACOS/lib-macos", -- If you want to use the 3rd Party folder
+            "/usr/local/Cellar/glfw/3.3.2/lib"
         }
 
     filter "configurations:Debug"
