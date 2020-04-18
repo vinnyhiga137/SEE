@@ -7,6 +7,7 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- Setting up some default configurations for the workspace
 workspace "SEE"
     architecture "x86_64"
+    startproject "Game"
 
     configurations {
         "Debug",
@@ -27,16 +28,16 @@ project "SEE"
     kind "StaticLib"
     language "C++"
     cppdialect "C++17"
-    staticruntime "on"
+    staticruntime "off"
 
     targetdir ("builds/bin/" .. outputdir .. "/%{prj.name}")
     objdir ("builds/obj/" .. outputdir .. "/%{prj.name}")
 
     files {
-        "%{prj.name}/src/**.h",
-        "%{prj.name}/src/**.hpp",
-        "%{prj.name}/src/**.cpp",
-        "%{prj.name}/src/**.c"
+        "%{prj.name}/**.h",
+        "%{prj.name}/**.hpp",
+        "%{prj.name}/**.cpp",
+        "%{prj.name}/**.c"
     }
 
     includedirs { 
@@ -48,9 +49,12 @@ project "SEE"
         "3rd Party/GLFW/glfw-3.3.2-WIN64/lib-vc2019" 
     }
 
+    links {
+        "glfw3",
+        "opengl32.lib"
+    }
+
     filter "system:windows"
-        cppdialect "C++17"
-        staticruntime "On"
         systemversion "latest"
 
         defines {
@@ -78,36 +82,30 @@ project "Game"
     kind "ConsoleApp"
     language "C++"
     cppdialect "C++17"
-    staticruntime "on"
+    staticruntime "off"
 
     targetdir ("builds/bin/" .. outputdir .. "/%{prj.name}")
     objdir ("builds/obj/" .. outputdir .. "/%{prj.name}")
 
     files {
-        "%{prj.name}/src/**.h",
-        "%{prj.name}/src/**.hpp",
-        "%{prj.name}/src/**.cpp",
-        "%{prj.name}/src/**.c"
+        "%{prj.name}/**.h",
+        "%{prj.name}/**.hpp",
+        "%{prj.name}/**.cpp",
+        "%{prj.name}/**.c"
     }
 
     includedirs {
-        "SEE/src",
-        "3rd Party/GLFW/glfw-3.3.2-WIN64/include",
-        "3rd Party/glad/include" 
+        "SEE/"
     }
 
     links {
-        "SEE",
-        "glfw3"
+        "see"
     }
 
     libdirs { 
-        "3rd Party/GLFW/glfw-3.3.2-WIN64/lib-vc2019" 
     }
 
     filter "system:windows"
-        cppdialect "C++17"
-        staticruntime "On"
         systemversion "latest"
 
         defines {
