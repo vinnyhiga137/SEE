@@ -3,7 +3,6 @@
 #include "Application.h"
 #include "Core.h"
 #include <iostream>
-#include <GLFW/glfw3.h>
 
 
 void Application::init() {

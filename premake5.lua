@@ -40,13 +40,13 @@ project "SEE"
         "%{prj.name}/**.c"
     }
 
-    links {
-        "glfw3",
-        "opengl32.lib"
-    }
-
     filter "system:windows"
         systemversion "latest"
+
+        links {
+            "glfw3",
+            "opengl32.lib"
+        }
 
         defines {
             "WIN32"
@@ -59,6 +59,28 @@ project "SEE"
     
         libdirs { 
             "3rd Party/GLFW/glfw-3.3.2-WIN64/lib-vc2019" 
+        }
+
+    filter "system:macosx"
+
+        links {
+            "glfw",
+            "Cocoa.framework",
+            "IOKit.framework",
+            "OpenGL.framework"
+        }
+
+        defines {
+            "MAC"
+        }
+
+        includedirs { 
+            "3rd Party/GLFW/glfw-3.3.2-MACOS/include",
+            "3rd Party/glad/include"
+        }
+
+        libdirs { 
+            "3rd Party/GLFW/glfw-3.3.2-MACOS/lib-macos" 
         }
 
     filter "configurations:Debug"
@@ -107,6 +129,16 @@ project "Game"
 
         defines {
             "WIN32"
+        }
+
+    filter "system:macosx"
+
+        defines {
+            "MAC"
+        }
+
+        links {
+            "see"
         }
 
     filter "configurations:Debug"

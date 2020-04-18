@@ -10,4 +10,12 @@
 // add headers that you want to pre-compile here
 #include "Application.h"
 
+#ifdef MAC
+#include "GLFW/glfw3.h"
+#endif
+
+#ifdef WIN32
+#include <GLFW/glfw3.h>
+#endif
+
 #endif //PCH_H
