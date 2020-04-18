@@ -40,15 +40,6 @@ project "SEE"
         "%{prj.name}/**.c"
     }
 
-    includedirs { 
-        "3rd Party/GLFW/glfw-3.3.2-WIN64/include",
-        "3rd Party/glad/include"
-    }
-
-    libdirs { 
-        "3rd Party/GLFW/glfw-3.3.2-WIN64/lib-vc2019" 
-    }
-
     links {
         "glfw3",
         "opengl32.lib"
@@ -59,6 +50,15 @@ project "SEE"
 
         defines {
             "WIN32"
+        }
+
+        includedirs { 
+            "3rd Party/GLFW/glfw-3.3.2-WIN64/include",
+            "3rd Party/glad/include"
+        }
+    
+        libdirs { 
+            "3rd Party/GLFW/glfw-3.3.2-WIN64/lib-vc2019" 
         }
 
     filter "configurations:Debug"
@@ -100,9 +100,6 @@ project "Game"
 
     links {
         "see"
-    }
-
-    libdirs { 
     }
 
     filter "system:windows"
