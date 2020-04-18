@@ -1,5 +1,13 @@
+-- Setting up some parameters to load the GLFW and macros
+
+outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
+
+
+
+-- Setting up some default configurations for the workspace
 workspace "SEE"
     architecture "x86_64"
+    startproject "Game"
 
     configurations {
         "Debug",
@@ -11,32 +19,42 @@ workspace "SEE"
 		"MultiProcessorCompile"
 	}
 
-outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+
+
+-- Game Engine configuration
 project "SEE"
     location "SEE"
     kind "StaticLib"
     language "C++"
     cppdialect "C++17"
-    staticruntime "on"
+    staticruntime "off"
 
     targetdir ("builds/bin/" .. outputdir .. "/%{prj.name}")
     objdir ("builds/obj/" .. outputdir .. "/%{prj.name}")
 
     files {
-        "%{prj.name}/src/**.h",
-        "%{prj.name}/src/**.hpp",
-        "%{prj.name}/src/**.cpp",
-        "%{prj.name}/src/**.c"
+        "%{prj.name}/**.h",
+        "%{prj.name}/**.hpp",
+        "%{prj.name}/**.cpp",
+        "%{prj.name}/**.c"
     }
 
-    includedirs {
+    includedirs { 
+        "3rd Party/GLFW/glfw-3.3.2-WIN64/include",
+        "3rd Party/glad/include"
+    }
 
+    libdirs { 
+        "3rd Party/GLFW/glfw-3.3.2-WIN64/lib-vc2019" 
+    }
+
+    links {
+        "glfw3",
+        "opengl32.lib"
     }
 
     filter "system:windows"
-        cppdialect "C++17"
-        staticruntime "On"
         systemversion "latest"
 
         defines {
@@ -56,34 +74,38 @@ project "SEE"
         optimize "On"
 
 
+
+
+
 project "Game"
     location "Game"
     kind "ConsoleApp"
     language "C++"
     cppdialect "C++17"
-    staticruntime "on"
+    staticruntime "off"
 
     targetdir ("builds/bin/" .. outputdir .. "/%{prj.name}")
     objdir ("builds/obj/" .. outputdir .. "/%{prj.name}")
 
     files {
-        "%{prj.name}/src/**.h",
-        "%{prj.name}/src/**.hpp",
-        "%{prj.name}/src/**.cpp",
-        "%{prj.name}/src/**.c"
+        "%{prj.name}/**.h",
+        "%{prj.name}/**.hpp",
+        "%{prj.name}/**.cpp",
+        "%{prj.name}/**.c"
     }
 
     includedirs {
-        "SEE/src"
+        "SEE/"
     }
 
     links {
-        "SEE"
+        "see"
+    }
+
+    libdirs { 
     }
 
     filter "system:windows"
-        cppdialect "C++17"
-        staticruntime "On"
         systemversion "latest"
 
         defines {
