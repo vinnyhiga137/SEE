@@ -7,6 +7,7 @@ namespace SEE {
 
 		// Local attributes
 		static SEE::Core* instance;
+		GLFWwindow* window;
 
 		Core();
 		~Core();
@@ -19,7 +20,7 @@ namespace SEE {
 	public:
 
 		/// Starts the main loop of the application.
-		static void start();
+		static void start(GLFWwindow* window);
 
 		/// Stops the main loop of the application.
 		static void stop();

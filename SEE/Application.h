@@ -1,6 +1,8 @@
 #pragma once
 
-class Application {
-public:
-	static void init();
-};
+namespace SEE {
+	class Application {
+	public:
+		static void init();
+	};
+}

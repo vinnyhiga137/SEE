@@ -5,6 +5,9 @@ SEE::Core* SEE::Core::instance = nullptr;
 
 SEE::Core::Core() {
 
+    // Initializing local attributes
+    SEE::Core::window = nullptr;
+
 }
 
 
@@ -20,43 +23,30 @@ SEE::Core::~Core() {
 /// per frame per second.
 void SEE::Core::tick() {
 
-    // Create a windowed mode window and its OpenGL context
-    GLFWwindow* window = glfwCreateWindow(1280, 720, "Game Application", NULL, NULL);
-
-    if (!window)
+    // Loop until the user closes the window
+    while (!glfwWindowShouldClose(window))
     {
-        glfwTerminate();
+        // Render here
+        glClear(GL_COLOR_BUFFER_BIT);
+
+        // Swap front and back buffers
+        glfwSwapBuffers(window);
+
+        // Poll for and process events
+        glfwPollEvents();
     }
-    else {
-
-        // Make the window's context current
-        glfwMakeContextCurrent(window);
-
-        // Loop until the user closes the window
-        while (!glfwWindowShouldClose(window))
-        {
-            // Render here
-            glClear(GL_COLOR_BUFFER_BIT);
-
-            // Swap front and back buffers
-            glfwSwapBuffers(window);
-
-            // Poll for and process events
-            glfwPollEvents();
-        }
-
-        glfwTerminate();
-    }
+    
 
 }
 
 
 
 /// Starts the main loop of the application.
-void SEE::Core::start() {
+void SEE::Core::start(GLFWwindow* window) {
 
 	if (SEE::Core::instance == nullptr) {
 		SEE::Core::instance = new SEE::Core();
+        SEE::Core::instance->window = window;
 
         SEE::Core::instance->tick();
 	}
@@ -69,6 +59,8 @@ void SEE::Core::start() {
 void SEE::Core::stop() {
 
     if (SEE::Core::instance != nullptr) {
+        glfwTerminate();
+        SEE::Core::instance->window = nullptr;
         delete SEE::Core::instance;
     }
 

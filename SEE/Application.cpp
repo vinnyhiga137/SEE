@@ -4,19 +4,27 @@
 #include "Core.h"
 #include <iostream>
 
-
-void Application::init() {
+void SEE::Application::init() {
 
 	std::cout << "Hello Game World!" << std::endl;
 
-	if (!glfwInit())
-	{
+	if (!glfwInit()) {
 		// Handle initialization failure
 		std::cout << "[FATAL] OpenGL can't be initialized!" << std::endl;
 	}
     else {
 
-		SEE::Core::start();
+		// Creating a windowed mode window and its OpenGL context
+		GLFWwindow* window = glfwCreateWindow(1280, 720, "Game Application", NULL, NULL);
+
+		if (!window) {
+			glfwTerminate();
+		}
+		else {
+			// Make the window's context current
+			glfwMakeContextCurrent(window);
+			SEE::Core::start(window);
+		}
         
     }
 

@@ -7,7 +7,7 @@
 int main() {
     
 	// Main entry point
-	Application::init();
+	SEE::Application::init();
 	
 	return 0;
 }
