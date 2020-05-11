@@ -9,7 +9,7 @@ The main ideia (for now) is to set this project as self-learning project for eve
 
 ## METAS
 
-* Initally must support Windows 10 (64 bits) and Mac OS Catalina (even if OpenGL was deprecated, but in the future this engine must use Metal).
+* Initally must support Windows 10 (64 bits) and Mac OS Catalina (even if OpenGL was deprecated, but in the future this engine will be using Metal).
 * 2D Rendering with Sprite Batching.
 * 3D Rendering with simple material system (Don't expect PBR for now).
 * Basic Keyboard + Mouse input and Joypad input.
