@@ -11,10 +11,12 @@
 #include "Application.h"
 
 #ifdef MAC
+#include "glad/glad.h"
 #include "GLFW/glfw3.h"
 #endif
 
 #ifdef WIN32
+#include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #endif
 

@@ -119,10 +119,6 @@ project "Game"
         "%{prj.name}/**.c"
     }
 
-    includedirs {
-        "SEE/"
-    }
-
     filter "system:windows"
         systemversion "latest"
 
@@ -132,6 +128,12 @@ project "Game"
 
         links {
             "see"
+        }
+
+        includedirs { 
+            "SEE/",
+            "3rd Party/GLFW/glfw-3.3.2-WIN64/include",
+            "3rd Party/glad/include"
         }
 
     filter "system:macosx"
@@ -150,6 +152,7 @@ project "Game"
         }
 
         includedirs { 
+            "SEE/",
             --"3rd Party/GLFW/glfw-3.3.2-MACOS/include", -- If you want to use the 3rd Party folder
             "/usr/local/Cellar/glfw/3.3.2/include",
             "3rd Party/glad/include"

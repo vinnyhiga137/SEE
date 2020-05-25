@@ -8,14 +8,14 @@ void SEE::Application::init(const char* name) {
 
 	std::cout << "Hello Game World!" << std::endl;
 
-	if (!glfwInit()) {
+	if (glfwInit() == NULL) {
 		// Handle initialization failure
 		std::cout << "[FATAL] OpenGL can't be initialized!" << std::endl;
 	}
     else {
 
-		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 4);
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 #ifdef MAC
@@ -25,13 +25,24 @@ void SEE::Application::init(const char* name) {
 		// Creating a windowed mode window and its OpenGL context
 		GLFWwindow* window = glfwCreateWindow(1280, 720, name, NULL, NULL);
 
-		if (!window) {
+		// Checking if the window was created on the desired operating system as a process...
+		if (window == NULL) {
 			glfwTerminate();
 		}
 		else {
-			// Make the window's context current
+
+			// Making the window's context as current
 			glfwMakeContextCurrent(window);
-			SEE::Core::start(window);
+
+			// Checking if the context was created successfully
+			if (gladLoadGLLoader((GLADloadproc)glfwGetProcAddress) == NULL)
+			{
+				glfwTerminate();
+			}
+			else {
+				SEE::Core::start(window);
+			}
+
 		}
         
     }

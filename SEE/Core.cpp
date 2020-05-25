@@ -23,6 +23,15 @@ SEE::Core::~Core() {
 /// per frame per second.
 void SEE::Core::tick() {
 
+
+    // TODO: This variables are for testing purpose and should not be
+    // in the "master" branch.
+
+    //unsigned int testVbo = 0;
+
+    //glGenBuffers(1, &testVbo);
+
+
     // Loop until the user closes the window
     while (!glfwWindowShouldClose(window)) {
 
