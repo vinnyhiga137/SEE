@@ -3,6 +3,10 @@
 namespace SEE {
 	class Application {
 	public:
-		static void init();
+
+		/// Creates the main window for the application.
+		/// Parameters:
+		/// - name: The name for the window.
+		static void init(const char* name);
 	};
 }

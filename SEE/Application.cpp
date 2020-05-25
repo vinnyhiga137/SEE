@@ -4,7 +4,7 @@
 #include "Core.h"
 #include <iostream>
 
-void SEE::Application::init() {
+void SEE::Application::init(const char* name) {
 
 	std::cout << "Hello Game World!" << std::endl;
 
@@ -14,8 +14,16 @@ void SEE::Application::init() {
 	}
     else {
 
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+#ifdef MAC
+		glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+#endif
+
 		// Creating a windowed mode window and its OpenGL context
-		GLFWwindow* window = glfwCreateWindow(1280, 720, "Game Application", NULL, NULL);
+		GLFWwindow* window = glfwCreateWindow(1280, 720, name, NULL, NULL);
 
 		if (!window) {
 			glfwTerminate();

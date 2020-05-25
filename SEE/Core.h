@@ -20,9 +20,12 @@ namespace SEE {
 	public:
 
 		/// Starts the main loop of the application.
+		/// Parameters:
+		/// - window: The instance of a opengl rendered window to be used within.
 		static void start(GLFWwindow* window);
 
 		/// Stops the main loop of the application.
+		/// WARNING: This also stops the opengl context and respective opengl rendered window!
 		static void stop();
 
 	};
