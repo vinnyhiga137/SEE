@@ -7,7 +7,9 @@ namespace SEE {
 
 		/// Creates the main window for the application.
 		/// Parameters:
-		/// - name: The name for the window.
-		static void init(const char* name);
+		/// - withName: The name for the window.
+		/// - withWidth: The width of the window.
+		/// - withHeight: The height of the window.
+		static void init(const char* withName, int withWidth, int withHeight);
 	};
 }

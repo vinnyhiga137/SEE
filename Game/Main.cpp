@@ -7,7 +7,7 @@
 int main() {
     
 	// Main entry point
-	SEE::Application::init("My Game");
+	SEE::Application::init("My Game", 1600, 900);
 	
 	return 0;
 }
