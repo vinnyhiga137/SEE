@@ -186,13 +186,8 @@ void SEE::Core::tick() {
     }
 
 
-    /*glUseProgram(shaderProgram);*/
-    //glDeleteShader(testVertexShader);
-    //glDeleteShader(testFragmentShader);
-
-
-    //glBindVertexArray(testVao);
-
+    glDeleteShader(testVertexShader);
+    glDeleteShader(testFragmentShader);
 
 
     SEE::Logger::printInfo("Shaders loaded successfully!");
@@ -202,14 +197,15 @@ void SEE::Core::tick() {
     while (!glfwWindowShouldClose(this->window)) {
 
         // Render here
+        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
-
-        // Swap front and back buffers
-        glfwSwapBuffers(this->window);
 
         glUseProgram(shaderProgram);
         glBindVertexArray(testVao);
         glDrawArrays(GL_TRIANGLES, 0, 3);
+
+        // Swap front and back buffers
+        glfwSwapBuffers(this->window);
 
         // Poll for and process events
         glfwPollEvents();
