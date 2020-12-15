@@ -11,7 +11,7 @@ void SEE::Application::init(const char* withName, int withWidth, int withHeight)
 	if (glfwInit() == NULL) {
 		// TODO: Handle initialization failure
 		// Add dialog box
-		std::cout << "[FATAL] OpenGL can't be initialized!" << std::endl;
+		SEE::Logger::printFatal("OpenGL can't be initialized!");
 	}
     else {
 

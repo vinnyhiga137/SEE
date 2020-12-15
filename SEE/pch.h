@@ -10,6 +10,7 @@
 // add headers that you want to pre-compile here
 #include "Application.h"
 #include "Logger.h"
+#include "Render.h"
 
 #ifdef MAC
 #include "glad/glad.h"

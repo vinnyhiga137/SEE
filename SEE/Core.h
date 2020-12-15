@@ -9,6 +9,9 @@ namespace SEE {
 		static SEE::Core* instance;
 		GLFWwindow* window;
 
+		SEE::Render* render;
+
+
 		Core();
 		~Core();
 
